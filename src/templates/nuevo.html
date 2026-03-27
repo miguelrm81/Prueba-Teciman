@@ -87,11 +87,11 @@
           <div class="dos-columnas">
             <div>
               <label>Hora inicio relevo</label>
-              <input type="time" name="hora_inicio_relevo">
+              <input type="time" name="hora_inicio_relevo" id="horaInicio" disabled>
             </div>
             <div>
               <label>Hora fin relevo</label>
-              <input type="time" name="hora_fin_relevo">
+              <input type="time" name="hora_fin_relevo" id="horaFin" disabled>
             </div>
           </div>
 
@@ -225,6 +225,20 @@
       if (!this.checked) {
         motivo.value = '';
         justificacion.value = '';
+      }
+    });
+
+    var selectRelevo = document.querySelector('[name="relevo_id"]');
+    var horaInicio = document.getElementById('horaInicio');
+    var horaFin = document.getElementById('horaFin');
+
+    selectRelevo.addEventListener('change', function() {
+      var hayRelevo = this.value !== '';
+      horaInicio.disabled = !hayRelevo;
+      horaFin.disabled = !hayRelevo;
+      if (!hayRelevo) {
+        horaInicio.value = '';
+        horaFin.value = '';
       }
     });
   </script>
